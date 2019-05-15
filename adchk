@@ -1,0 +1,14 @@
+#!/bin/bash
+# Cody Brown 
+# adchk bash script
+# Thu Feb 14 10:58:07 CST 2019
+# =============================================
+if [ "$1" = "$2" ] ;
+	then
+		echo "YES!!!!!!"
+	else
+		echo "NO!!!!!!!"
+fi
+
+echo "SEND TO: "$1""
+echo "RECEIVE: "$2""

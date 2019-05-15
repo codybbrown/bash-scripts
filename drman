@@ -1,0 +1,21 @@
+#!/bin/sh
+# create directory manifest
+if [[ -e dir_manifest.txt ]]; 
+then
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++" >> dir_manifest.txt
+	echo "$(date)" >> dir_manifest.txt 
+	echo "Directory manifest for: $(pwd)" >> dir_manifest.txt
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++" >> dir_manifest.txt
+	find . -type d >> dir_manifest.txt
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++" >> dir_manifest.txt
+else
+	touch dir_manifest.txt
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++" >> dir_manifest.txt
+	echo "$(date)" >> dir_manifest.txt 
+	echo "Directory manifest for: $(pwd)" >> dir_manifest.txt
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++" >> dir_manifest.txt
+	find . -type d >> dir_manifest.txt
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++" >> dir_manifest.txt
+fi

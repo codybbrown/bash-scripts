@@ -1,0 +1,13 @@
+#!/bin/sh
+# generate a shell script file with date, name and header
+# takes 1 arg for filename
+touch "$1"
+sudo chmod 700 "$1"
+echo "#!/bin/bash" >> "$1"
+echo "# Cody Brown " >> "$1"
+echo "# "$1" bash script" >> "$1"
+echo "# $(date)" >> "$1"
+echo "# =============================================" >> "$1"
+echo ''
+mv "$1" /Users/codybbrown/scripts/;
+subl /Users/codybbrown/scripts/"$1";

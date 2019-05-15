@@ -1,0 +1,12 @@
+#!/bin/bash
+# Cody Brown 
+# html bash script
+# Thu Jun  7 10:57:35 CDT 2018
+# *********************************************************
+touch "$1".html
+echo "<html>" >> "$1".html
+echo "<head></head>" >> "$1".html
+echo "<body></body>" >> "$1".html
+echo "<script src=""></script>" >> "$1".html
+echo "</html>" >> "$1".html
+subl "$1".html

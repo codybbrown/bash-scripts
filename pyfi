@@ -1,0 +1,14 @@
+#!/bin/sh
+# generate a python file with date, name and header
+# takes 2 args for filename and subject
+touch "$1".py
+echo "# Cody Brown " >> "$1".py
+echo "# "$1".py" >> "$1".py
+echo "# $(date)" >> "$1".py
+echo "# *********************************************************" >> "$1".py
+echo ''
+echo 'def main(): ' >> "$1.py"
+echo 'if __name__ == "'__main__'": main() # main func call' >> "$1".py  
+subl "$1".py
+
+

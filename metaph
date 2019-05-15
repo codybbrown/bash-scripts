@@ -1,0 +1,38 @@
+#!/bin/bash
+# Cody Brown 
+# metaph bash script
+# Sat Oct 27 19:17:15 CDT 2018
+# *********************************************************
+# recursively finds .NEF .RAF .JPG
+# Prints meta data to a meta.txt file
+# -------------------------------------
+# TO DO:
+# - recursive search: ensure the name is in quotes  			DONE
+# - print to "meta-all.txt" file 								DONE
+# - make default to search for ALL image file types 	 		DONE
+
+# -	filter out meta data except: (see the height variable)
+# 		- Model
+#		- Creation Date
+#		- Content types
+#		- Display name
+#		- Item FSname
+#		- Lens Model
+# 		- ExposureTimeSeconds
+#		- Aperture
+#		- Focal Length
+#		- ISO speed
+
+# - Format results into columns
+# - if files found, cp to new dir named by type
+# - print to "meta.txt" file in root dir
+# ********************************************************* 
+
+# the command below works
+# height=$(mdls [FILENAME] | grep AcquisitionMake | awk '{print $3}'); echo $height
+
+find . -type f \( -iname "*.NEF" -o -iname "*.RAF" -o -iname "*.JPEG" -o -iname "*.JPG" -o -iname "*.pct" -o -iname "*.mov" -o -iname "*.psd" \) -exec mdls '{}' \; \
+-exec echo \; \
+-exec echo "**********************************************************************************" \; \
+-exec echo "**********************************************************************************" \; \
+-exec echo \; > meta.txt 

@@ -1,0 +1,8 @@
+#!/bin/bash
+# Cody Brown 
+# brewup bash script
+# Sun Dec 30 23:53:53 CST 2018
+# =============================================
+echo "============== USER DIRECTED BREW UPGRADE =============="
+brew upgrade
+echo "============== BREW UPGRADE COMPLETE =============="

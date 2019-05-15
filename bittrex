@@ -1,0 +1,20 @@
+#!/bin/bash
+echo "Preparing Bittrex Full Orders...."
+now=$(date +"%y%m%d_%H%M%S") # variable to add date where desired
+csv="fullOrders.csv" # bittrex orders.csv variable
+tsv="fullOrders.tsv" #.tsv variable
+tsv_now="fullOrders_$now.tsv" # x_dated.tsv variable
+
+# move bittrex orders to trades folder for processing
+cp ~/Downloads/$csv ~/studio/code/blockchain/trading/$csv 
+
+# creates tab separated sated file and replaces hyphen with f slash 
+gsed -e 's/,/\t/g' -e 's/-/\//g' ~/studio/code/blockchain/trading/$csv  > $tsv; rm ~/studio/code/blockchain/trading/$csv 
+
+# extract only relevant columns: 2-7, 9
+cut -f 2-7,9 $tsv > $tsv_now; rm $tsv
+
+
+
+
+

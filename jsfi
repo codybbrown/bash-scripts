@@ -1,0 +1,10 @@
+#!/bin/sh
+# generate a javascript default file with date, name and header
+# takes 1 arg for filename
+touch "$1".js
+echo "// Cody Brown " >> "$1".js
+echo "// "$1".js" >> "$1".js
+echo "// $(date)" >> "$1".js
+echo "// *********************************************************" >> "$1".js
+echo '' 
+open "$1".js
