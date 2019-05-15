@@ -1,0 +1,12 @@
+#!/bin/bash
+# Cody Brown 
+# netcommands bash script
+# Wed May 15 18:20:38 BST 2019
+# =============================================
+
+# growing collection of helpful network bash aliases
+alias ip="ifconfig en1 | awk '/inet/{print $2}' " # get IP address
+alias mac="ifconfig en1 | awk '/ether/{print $2}' " # get MAC 
+alias netid="ip; mac "
+alias tcp="netstat -tulanp tcp" # list all tcp connections/status
+alias listen="netstat -anv | grep LISTEN "
