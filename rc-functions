@@ -1,0 +1,103 @@
+#!/bin/bash
+# Cody Brown 
+# rc-functions bash script
+# Wed May 15 17:28:12 BST 2019
+# =============================================
+
+
+# ========================================
+# =====   FUNCTIONS
+# ========================================
+drsyn() {
+	rsync -av --ignore-existing --recursive "$1" "$2" # src/ dest/
+}
+
+collect() {
+	mkdir "$1" 
+	find . -iname "*."$1"" | xargs -I {} mv {} "$1"/ 
+}
+
+# generate a python file with date, name and header - 2 args
+pyfi() {
+	touch "$1".py
+	echo "# Cody Brown" >> "$1".py
+	echo "# "$1".py" >> "$1".py
+	echo "# $(date)" >> "$1".py
+	echo "# ==================================================== " >> "$1".py
+	echo "# '$2'" >> "$1".py
+	echo "# ==================================================== " >> "$1".py
+	chmod 644 "$1".py 
+	subl "$1".py 
+}
+
+# create directory manifest
+drman() {
+	if [[ -e dir_manifest.txt ]]; 
+	then
+		echo "====================================================" > dir_manifest.txt
+		echo "$(date)" >> dir_manifest.txt 
+		echo "Directory manifest for: $(pwd)" >> dir_manifest.txt
+		echo "====================================================" >> dir_manifest.txt
+		find . -type d >> dir_manifest.txt
+		echo " " >> dir_manifest.txt
+	else
+		touch dir_manifest.txt
+		echo "====================================================" >> dir_manifest.txt
+		echo "$(date)" >> dir_manifest.txt 
+		echo "Directory manifest for: $(pwd)" >> dir_manifest.txt
+		echo "====================================================" >> dir_manifest.txt
+		find . -type d >> dir_manifest.txt
+		echo " " >> dir_manifest.txt
+	fi
+}
+
+# create file manifest
+fman() {
+	touch file_manifest.txt
+	echo "====================================================" >> file_manifest.txt
+	echo "$(date)" >> file_manifest.txt 
+	echo "File manifest for: $(pwd)" >> file_manifest.txt
+	echo "====================================================" >> file_manifest.txt
+	echo " " >> file_manifest.txt 
+	find . -type f >> file_manifest.txt
+	echo " " >> file_manifest.txt
+}
+dfman() {
+	echo "====================================================" > content_manifest.txt
+	echo "$(date)" >> content_manifest.txt 
+	echo "All Content manifest for: $(pwd)" >> content_manifest.txt
+	echo "====================================================" >> content_manifest.txt
+	echo " " >> content_manifest.txt
+	ls -Rlah >> content_manifest.txt
+	echo " " >> content_manifest.txt
+}
+
+# diskutil unmounDisk
+undisk() {
+	diskutil unmountDisk "$1"
+}
+
+# get the command of a PID
+procm() {
+	ps -p "$1" -o comm= 
+}
+
+lgrep() { ll | grep -n "$1"; } # grep arg 1 from list
+agrep() { cat ~/.bashrc | grep "$1"; } # grep arg from aliases in .bashrc
+cgrep() { cat "$1" | grep "$2"; } # cat var1 grep var2 in file
+
+
+# ==================== ENVIRONMENT VARIABLES ==================== 
+export LESS="-MN"
+export HISTCONTROL=ignoreboth #ignoredups:ignorespace leaves out of history if a space is entered first
+export HISTTIMEFORMAT='%b %d %I:%M %p ' # adds date and time to history log
+export HISTIGNORE="history:pwd:exit:df:ls:ls -la:ll"
+export GREP_OPTIONS="--color=auto"
+export GREP_COLOR="37;45"
+export EDITOR="subl "
+# -------------------- PROMPT SETTINGS --------------------
+PROMPT_COLOR='\e[00m\e[01;29;166m' # set prompt color variable
+export PS1='\['$PROMPT_COLOR'\][\u] \D{%y-%m-%d} \A \w\$\[\e[0m\'] # set and export command prompt variable
+# -------------------- COLOR SETTINGS --------------------
+export CLICOLOR=1
+export LSCOLORS=GxdxBxDxdxegedabagacad
