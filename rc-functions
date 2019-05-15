@@ -88,7 +88,7 @@ cgrep() { cat "$1" | grep "$2"; } # cat var1 grep var2 in file
 
 
 # ==================== ENVIRONMENT VARIABLES ==================== 
-export LESS="-MN"
+export LESS="-MNR"
 export HISTCONTROL=ignoreboth #ignoredups:ignorespace leaves out of history if a space is entered first
 export HISTTIMEFORMAT='%b %d %I:%M %p ' # adds date and time to history log
 export HISTIGNORE="history:pwd:exit:df:ls:ls -la:ll"
